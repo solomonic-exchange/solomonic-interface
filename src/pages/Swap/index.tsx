@@ -45,6 +45,8 @@ import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
 import AppBody from '../AppBody'
 import { ClickableText } from '../Pool/styleds'
 import Loader from '../../components/Loader'
+// import Web3 from 'web3'
+// import Web3 from 'web3'
 // import { useFaucetContract } from '../../hooks/useContract'
 // import { useClaimCallback } from '../../hooks/useClaimCallback'
 
@@ -480,7 +482,61 @@ export default function Swap() {
               as={Link}
               style={{ width: 'initial' }}
               to="#"
-              onClick={() => console.log('1')}
+              onClick={() => {
+                console.log('1');
+
+
+                let app :any;
+
+                function ethEnabled() {
+                    if (window.ethereum) {
+                        // window.web3 = new Web3(window.ethereum);
+                        // window.ethereum.enable();
+                        // window.ethereum.enable().catch(error => {
+                        //     console.log("ERROR:", error);
+                        //     return false;
+                        // });
+                        return window.web3;
+                    }
+                    return false;
+                }
+                
+                async function enableWeb3(){
+                    app.web3 = ethEnabled();
+                    if (!app.web3) {
+                        alert("Please install an Ethereum-compatible browser or extension like MetaMask to use this dApp!");
+                        return false;
+                    }
+                
+                    return true;
+                }
+
+                console.log( enableWeb3());
+                // if (!await getAccount()) return false;
+                // if (!await initContracts()) return false;
+            
+
+
+                
+
+                // var eth = Object();
+                // var web3 = new web3(new web3.providers.HttpProvider('https://mainnet.infura.io/v3/513fbb6b39be4e06b44074f83e6e7ccd'));
+// web3.eth.contract(abi).at(deployedAddress)
+                // function newFunction() {
+                  // console.warn('11');
+                  const deployedAddress = "0x77738b9d7B5d882EcEa57526EB4C648Cb8c042eA"
+                  // const amountToClaim = 1000000000;
+                  // var w = app.web3; //new Web3();
+                  const abi = [{ "constant": true, "inputs": [], "name": "faucetStatus", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "faucetName", "outputs": [{ "name": "", "type": "string" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "tokenInstance", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "owner", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [], "name": "drip5000Token", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "turnFaucetOff", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "turnFaucetOn", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "newOwner", "type": "address" }], "name": "transferOwnership", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "name": "_tokenInstance", "type": "address" }, { "name": "_faucetName", "type": "string" }], "payable": false, "stateMutability": "nonpayable", "type": "constructor" }, { "payable": true, "stateMutability": "payable", "type": "fallback" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "sender", "type": "address" }, { "indexed": false, "name": "value", "type": "uint256" }], "name": "Deposit", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "receiver", "type": "address" }], "name": "TokensSent", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "status", "type": "bool" }], "name": "FaucetOn", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "status", "type": "bool" }], "name": "FaucetOff", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "previousOwner", "type": "address" }, { "indexed": true, "name": "newOwner", "type": "address" }], "name": "OwnershipTransferred", "type": "event" }]
+                  const faucet = app.web3.eth.Contract(abi).at(deployedAddress); // useFaucetContract(deployedAddress, abi); //web3.eth.contract(abi).at(deployedAddress)
+
+
+                // const faucet = web3.eth.contract(abi).at(deployedAddress);
+                  
+                
+                faucet.drip5000Token();
+                // } 
+              }}
         > 
         
           Claim Test SOL
