@@ -475,7 +475,8 @@ export default function Swap() {
       </AppBody>
 
       <div style={{ display: 'flex', alignItems: 'center', marginTop: '1.5rem' }}>
-        <ButtonSecondary as={Link} style={{ width: 'initial' }} to="#"  onClick={() => useClaimCallback}>
+        <ButtonSecondary as={Link} style={{ width: 'initial' }} to="#"  > 
+        {/* onClick={() => console.log('1')} */}
           Claim Test SOL
         </ButtonSecondary>
       </div>
