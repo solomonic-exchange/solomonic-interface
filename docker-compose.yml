@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  verdaccio:
+    container_name: verdaccio
+    image: verdaccio/verdaccio
+    ports:
+      - "4873:4873"
+
+  app:
+    image: $IMAGE
+    command: sh -c 'npm set registry http://verdaccio:4873 && $BUILD_COMMAND'
+    working_dir: /workspace/$BASE_DIR
+    environment: $ENVIRONMENT
+    volumes:
+      - './path/to/app:/workspace/$BASE_DIR'
