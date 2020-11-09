@@ -485,7 +485,6 @@ export default function Swap() {
           Claim Test SOL
         </ButtonSecondary>
       </div>
-
       {/* <AdvancedSwapDetailsDropdown trade={trade} /> */}
     </>
   )
