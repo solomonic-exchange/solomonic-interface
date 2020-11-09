@@ -4,15 +4,16 @@ import { ArrowDown } from 'react-feather'
 import ReactGA from 'react-ga'
 import { Text } from 'rebass'
 import { ThemeContext } from 'styled-components'
+import { Link } from 'react-router-dom'
 import AddressInputPanel from '../../components/AddressInputPanel'
-import { ButtonError, ButtonLight, ButtonPrimary, ButtonConfirmed } from '../../components/Button'
+import { ButtonError, ButtonLight, ButtonPrimary, ButtonSecondary, ButtonConfirmed } from '../../components/Button'
 import Card, { GreyCard } from '../../components/Card'
 import { AutoColumn } from '../../components/Column'
 import ConfirmSwapModal from '../../components/swap/ConfirmSwapModal'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
 import { SwapPoolTabs } from '../../components/NavigationTabs'
 import { AutoRow, RowBetween } from '../../components/Row'
-import AdvancedSwapDetailsDropdown from '../../components/swap/AdvancedSwapDetailsDropdown'
+// import AdvancedSwapDetailsDropdown from '../../components/swap/AdvancedSwapDetailsDropdown'
 import BetterTradeLink from '../../components/swap/BetterTradeLink'
 import confirmPriceImpactWithoutFee from '../../components/swap/confirmPriceImpactWithoutFee'
 import { ArrowWrapper, BottomGrouping, SwapCallbackError, Wrapper } from '../../components/swap/styleds'
@@ -44,6 +45,8 @@ import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
 import AppBody from '../AppBody'
 import { ClickableText } from '../Pool/styleds'
 import Loader from '../../components/Loader'
+// import { useFaucetContract } from '../../hooks/useContract'
+// import { useClaimCallback } from '../../hooks/useClaimCallback'
 
 export default function Swap() {
   const loadedUrlParams = useDefaultsFromURLSearch()
@@ -270,6 +273,16 @@ export default function Swap() {
     onCurrencySelection
   ])
 
+  // function newFunction() {
+    // const deployedAddress = "0x77738b9d7B5d882EcEa57526EB4C648Cb8c042eA"
+    // const amountToClaim = 1000000000;
+    // const abi = [{ "constant": true, "inputs": [], "name": "faucetStatus", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "faucetName", "outputs": [{ "name": "", "type": "string" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "tokenInstance", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "owner", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [], "name": "drip5000Token", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "turnFaucetOff", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "turnFaucetOn", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "newOwner", "type": "address" }], "name": "transferOwnership", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "name": "_tokenInstance", "type": "address" }, { "name": "_faucetName", "type": "string" }], "payable": false, "stateMutability": "nonpayable", "type": "constructor" }, { "payable": true, "stateMutability": "payable", "type": "fallback" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "sender", "type": "address" }, { "indexed": false, "name": "value", "type": "uint256" }], "name": "Deposit", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "receiver", "type": "address" }], "name": "TokensSent", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "status", "type": "bool" }], "name": "FaucetOn", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "status", "type": "bool" }], "name": "FaucetOff", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "previousOwner", "type": "address" }, { "indexed": true, "name": "newOwner", "type": "address" }], "name": "OwnershipTransferred", "type": "event" }]
+    // const faucet = useFaucetContract(deployedAddress, abi); //web3.eth.contract(abi).at(deployedAddress)
+  // const faucet = web3.eth.contract(abi).at(deployedAddress);
+    // return faucet?.drip5000Token();
+  // } 
+
+
   return (
     <>
       <TokenWarningModal
@@ -351,7 +364,7 @@ export default function Swap() {
             ) : null}
 
             {showWrap ? null : (
-              <Card padding={'.25rem .75rem 0 .75rem'} borderRadius={'20px'}>
+              <Card padding={'.25rem .75rem 0 .75rem'} borderRadius={'.25rem'}>
                 <AutoColumn gap="4px">
                   {Boolean(trade) && (
                     <RowBetween align="center">
@@ -472,7 +485,16 @@ export default function Swap() {
           </BottomGrouping>
         </Wrapper>
       </AppBody>
-      <AdvancedSwapDetailsDropdown trade={trade} />
+
+      <div style={{ display: 'flex', alignItems: 'center', marginTop: '1.5rem' }}>
+        <ButtonSecondary as={Link} style={{ width: 'initial' }} to="#"  > 
+        {/* onClick={() => console.log('1')} */}
+          Claim Test SOL
+        </ButtonSecondary>
+      </div>
+      {/* <AdvancedSwapDetailsDropdown trade={trade} /> */}
     </>
   )
 }
+
+
