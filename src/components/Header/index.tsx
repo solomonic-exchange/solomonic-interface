@@ -14,8 +14,8 @@ import { useDarkModeManager } from '../../state/user/hooks'
 import { useETHBalances } from '../../state/wallet/hooks'
 
 import { YellowCard } from '../Card'
-import Settings from '../Settings'
-import Menu from '../Menu'
+// import Settings from '../Settings'
+// import Menu from '../Menu'
 
 import Row, { RowBetween } from '../Row'
 import Web3Status from '../Web3Status'
@@ -74,7 +74,7 @@ const AccountElement = styled.div<{ active: boolean }>`
   flex-direction: row;
   align-items: center;
   background-color: ${({ theme, active }) => (!active ? theme.bg1 : theme.bg3)};
-  border-radius: 12px;
+  border-radius: 0.25rem;
   white-space: nowrap;
   width: 100%;
 
@@ -93,7 +93,7 @@ const TestnetWrapper = styled.div`
 const NetworkCard = styled(YellowCard)`
   width: fit-content;
   margin-right: 10px;
-  border-radius: 12px;
+  border-radius: 0.25rem;
   padding: 8px 12px;
 `
 
@@ -103,7 +103,7 @@ const UniIcon = styled.div`
     transform: rotate(-5deg);
   }
   ${({ theme }) => theme.mediaWidth.upToSmall`
-    img { 
+    img {
       width: 4.5rem;
     }
   `};
@@ -131,7 +131,9 @@ const NETWORK_LABELS: { [chainId in ChainId]: string | null } = {
   [ChainId.RINKEBY]: 'Rinkeby',
   [ChainId.ROPSTEN]: 'Ropsten',
   [ChainId.GÖRLI]: 'Görli',
-  [ChainId.KOVAN]: 'Kovan'
+  [ChainId.KOVAN]: 'Kovan',
+  [ChainId.BSC]: 'Binance',
+  [ChainId.BSCNET]: 'Chapel'
 }
 
 export default function Header() {
@@ -169,8 +171,8 @@ export default function Header() {
           </HeaderElement>
           <HeaderElementWrap>
             <VersionSwitch />
-            <Settings />
-            <Menu />
+            {/* <Settings /> */}
+            {/* <Menu /> */}
           </HeaderElementWrap>
         </HeaderControls>
       </RowBetween>
