@@ -26,8 +26,8 @@ interface VersionToggleProps extends React.ComponentProps<typeof Link> {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const VersionToggle = styled(({ enabled, ...rest }: VersionToggleProps) => <Link {...rest} />)<VersionToggleProps>`
-  border-radius: 0.25rem;
-  opacity: ${({ enabled }) => (enabled ? 1 : 0.5)};
+border-radius: 0.25rem;
+opacity: ${({ enabled }) => (enabled ? 1 : 0.5)};
   cursor: ${({ enabled }) => (enabled ? 'pointer' : 'default')};
   background: ${({ theme }) => theme.bg3};
   color: ${({ theme }) => theme.primary1};
