@@ -478,9 +478,10 @@ export default function Swap() {
       <div style={{ display: 'flex', alignItems: 'center', marginTop: '1.5rem' }}>
         <ButtonSecondary
           as={Link}
-          style={{ width: 'initial' }} //to="#"
+          style={{ width: 'initial' }} 
+          //to="#"
           // eslint-disable-next-line react-hooks/rules-of-hooks
-          onClick={() => console.log(useClaimCallback())}
+          onClick={{console.log(useClaimCallback())}}
         >
           Claim Test SOL
         </ButtonSecondary>
