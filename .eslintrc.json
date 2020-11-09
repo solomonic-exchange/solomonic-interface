@@ -5,7 +5,8 @@
     "sourceType": "module",
     "ecmaFeatures": {
       // Allows for the parsing of JSX
-      "jsx": true
+      "jsx": true,
+      "tsx": true
     }
   },
   "ignorePatterns": [

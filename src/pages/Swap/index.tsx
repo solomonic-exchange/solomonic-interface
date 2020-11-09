@@ -482,6 +482,7 @@ export default function Swap() {
           as={Link}
           style={{ width: 'initial' }} //to="#"
           // eslint-disable-next-line react-hooks/rules-of-hooks
+        >
           Claim Test SOL
         </ButtonSecondary>
       </div>
