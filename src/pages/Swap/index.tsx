@@ -4,7 +4,6 @@ import { ArrowDown } from 'react-feather'
 import ReactGA from 'react-ga'
 import { Text } from 'rebass'
 import { ThemeContext } from 'styled-components'
-import { Link } from 'react-router-dom'
 import AddressInputPanel from '../../components/AddressInputPanel'
 import { ButtonError, ButtonLight, ButtonPrimary, ButtonSecondary, ButtonConfirmed } from '../../components/Button'
 import Card, { GreyCard } from '../../components/Card'
@@ -45,10 +44,8 @@ import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
 import AppBody from '../AppBody'
 import { ClickableText } from '../Pool/styleds'
 import Loader from '../../components/Loader'
-// import Web3 from 'web3'
-// import Web3 from 'web3'
-// import { useFaucetContract } from '../../hooks/useContract'
-// import { useClaimCallback } from '../../hooks/useClaimCallback'
+import { Link } from 'react-router-dom'
+import { useClaimCallback } from '../../hooks/useClaimCallback'
 
 export default function Swap() {
   const loadedUrlParams = useDefaultsFromURLSearch()
@@ -274,6 +271,7 @@ export default function Swap() {
   const handleOutputSelect = useCallback(outputCurrency => onCurrencySelection(Field.OUTPUT, outputCurrency), [
     onCurrencySelection
   ])
+
   return (
     <>
       <TokenWarningModal
@@ -482,6 +480,8 @@ export default function Swap() {
           as={Link}
           style={{ width: 'initial' }} //to="#"
           // eslint-disable-next-line react-hooks/rules-of-hooks
+          onClick={() => console.log(useClaimCallback())}
+        >
           Claim Test SOL
         </ButtonSecondary>
       </div>
@@ -490,5 +490,3 @@ export default function Swap() {
     </>
   )
 }
-
-
