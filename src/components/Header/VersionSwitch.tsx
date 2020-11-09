@@ -26,8 +26,8 @@ interface VersionToggleProps extends React.ComponentProps<typeof Link> {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const VersionToggle = styled(({ enabled, ...rest }: VersionToggleProps) => <Link {...rest} />)<VersionToggleProps>`
-  border-radius: 0.25rem;
-  opacity: ${({ enabled }) => (enabled ? 1 : 0.5)};
+border-radius: 0.25rem;
+opacity: ${({ enabled }) => (enabled ? 1 : 0.5)};
   cursor: ${({ enabled }) => (enabled ? 'pointer' : 'default')};
   background: ${({ theme }) => theme.bg3};
   color: ${({ theme }) => theme.primary1};
@@ -41,6 +41,7 @@ const VersionToggle = styled(({ enabled, ...rest }: VersionToggleProps) => <Link
 `
 
 export default function VersionSwitch() {
+  let binance = false
   const version = useToggledVersion()
   const location = useLocation()
   const query = useParsedQueryString()
@@ -58,19 +59,25 @@ export default function VersionSwitch() {
   const handleClick = useCallback(
     e => {
       if (!versionSwitchAvailable) e.preventDefault()
+      if (binance === false) {
+        binance = true
+        window.open('https://chainid.network/chains/#binance-smart-chain-testnet--')
+      }
     },
     [versionSwitchAvailable]
   )
 
   const toggle = (
     <VersionToggle enabled={versionSwitchAvailable} to={toggleDest} onClick={handleClick}>
-      <VersionLabel enabled={version === Version.v2 || !versionSwitchAvailable}>V2</VersionLabel>
-      <VersionLabel enabled={version === Version.v1 && versionSwitchAvailable}>V1</VersionLabel>
+      <VersionLabel enabled={version === Version.v2 || !versionSwitchAvailable}>Ethereum</VersionLabel>
+      <VersionLabel enabled={version === Version.v1 && versionSwitchAvailable}>Binance Smart Chain</VersionLabel>
     </VersionToggle>
   )
   return versionSwitchAvailable ? (
     toggle
   ) : (
-    <MouseoverTooltip text="This page is only compatible with Uniswap V2.">{toggle}</MouseoverTooltip>
+    <MouseoverTooltip text="This page is currently only compatible with Ethereum Rinkeby Testnet.">
+      {toggle}
+    </MouseoverTooltip>
   )
 }
