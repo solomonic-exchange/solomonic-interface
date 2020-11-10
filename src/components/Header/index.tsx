@@ -14,12 +14,12 @@ import { useDarkModeManager } from '../../state/user/hooks'
 import { useETHBalances } from '../../state/wallet/hooks'
 
 import { YellowCard } from '../Card'
-import Settings from '../Settings'
+// import Settings from '../Settings'
 // import Menu from '../Menu'
 
 import Row, { RowBetween } from '../Row'
 import Web3Status from '../Web3Status'
-// import VersionSwitch from './VersionSwitch'
+import VersionSwitch from './VersionSwitch'
 
 const HeaderFrame = styled.div`
   display: flex;
@@ -45,7 +45,6 @@ const HeaderElement = styled.div`
 const HeaderElementWrap = styled.div`
   display: flex;
   align-items: center;
-
   ${({ theme }) => theme.mediaWidth.upToSmall`
     margin-top: 0.5rem;
 `};
@@ -55,7 +54,6 @@ const Title = styled.a`
   display: flex;
   align-items: center;
   pointer-events: auto;
-
   :hover {
     cursor: pointer;
   }
@@ -77,7 +75,6 @@ const AccountElement = styled.div<{ active: boolean }>`
   border-radius: 0.25rem;
   white-space: nowrap;
   width: 100%;
-
   :focus {
     border: 1px solid blue;
   }
@@ -113,7 +110,6 @@ const HeaderControls = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-
   ${({ theme }) => theme.mediaWidth.upToSmall`
     flex-direction: column;
     align-items: flex-end;
@@ -131,7 +127,9 @@ const NETWORK_LABELS: { [chainId in ChainId]: string | null } = {
   [ChainId.RINKEBY]: 'Rinkeby',
   [ChainId.ROPSTEN]: 'Ropsten',
   [ChainId.GÖRLI]: 'Görli',
-  [ChainId.KOVAN]: 'Kovan'
+  [ChainId.KOVAN]: 'Kovan',
+  [ChainId.BSC]: 'Binance',
+  [ChainId.BSCNET]: 'Chapel'
 }
 
 export default function Header() {
@@ -168,8 +166,8 @@ export default function Header() {
             </AccountElement>
           </HeaderElement>
           <HeaderElementWrap>
-            {/* <VersionSwitch /> */}
-            <Settings />
+            <VersionSwitch />
+            {/* <Settings /> */}
             {/* <Menu /> */}
           </HeaderElementWrap>
         </HeaderControls>
